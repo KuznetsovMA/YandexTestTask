@@ -10,36 +10,34 @@
             </select>
         </div>
         <table class="timetable">
-            <tr class="timetable__row">
+            <template v-for="(flight, index) in flights">
+                <tr class="timetable__row" :key="index">
                 <td class="timetable__column timetable__time">
-                    {{ time }}
+                    {{ flight.time }}
                 </td>
                  <td class="timetable__column timetable__city">
-                    {{ city }}
+                    {{ flight.city }}
                 </td>
                 <td class="timetable__column timetable__number">
-                    {{ number }}
+                    {{ flight.number }}
                 </td>
                 <td class="timetable__column timetable__terminal">
-                    {{ terminal }}
+                    {{ flight.terminal }}
                 </td>
                 <td class="timetable__column timetable__status">
-                    {{ status }}
+                    {{ flight.status }}
                 </td>
             </tr>
+            </template>
         </table>
     </section>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            time: '14:00',
-            city: 'Вена',
-            number: '2154',
-            terminal: 'B',
-            status: 'В полете'
+    computed: {
+        flights() {
+            return this.$store.getters['getFlights']
         }
     }
 }
@@ -47,8 +45,8 @@ export default {
 
 <style lang="scss" scoped>
     section {
-      width: 1000px;
-      margin: 20px auto 0px auto;
+      width: 1300px;
+      margin: 20px auto 0 auto;
 
       font-size: 30px;
       font-family: "Open Sans", Helvetica, sans-serif;
@@ -109,18 +107,27 @@ export default {
 
     .timetable {
       box-sizing: border-box;
-      width: 1000px;
+      width: 100%;
       margin: 0 auto;
     }
 
     .timetable__column {
+      width: 18%;
+
       text-align: center;
+      &:first-child {
+        text-align: left;
+      }
     }
+
+
+
 
     .timetable__row {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
-      padding: 10px;
+      padding: 10px 0 10px 0;
 
       border-bottom: 1px solid #ffdb4d;
     }
