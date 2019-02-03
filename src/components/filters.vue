@@ -2,7 +2,7 @@
     <div class="filters">
         <input type="text" placeholder="Поиск по номеру рейса">
         <select
-        ref="status" 
+        v-model="selected"
         @change="getFilteredFlights" 
         name="status" 
         id="status">
@@ -16,13 +16,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      selected: 'Все'
+    }
+  },
   methods: {
       getFilteredFlights() {
-        const selectedIndex = this.$refs.status.selectedIndex
-        const selectedIndexValue = this.$refs.status.querySelectorAll('option')[selectedIndex].value
-        if (selectedIndexValue !== 'Все') {
+        if (this.selected !== 'Все') {
           const result = this.$store.state.flights.filter((flight) => {
-            return flight.status === selectedIndexValue
+            return flight.status === this.selected
           })
           this.$store.commit('set', {
             name: 'filteredFlights',
@@ -34,7 +37,6 @@ export default {
       },
       setDefaultFlights() {
         const flights = this.$store.state.flights
-        const filteredFlights = this.$store.state.filteredFlights
         this.$store.commit('set', {
           name: 'filteredFlights',
           value: flights
