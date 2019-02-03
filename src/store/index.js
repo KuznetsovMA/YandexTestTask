@@ -9,25 +9,40 @@ const store = new Vuex.Store({
         {
           time: '14:00',
           city: 'Вена',
-          number: '1437',
+          number: '3798',
           terminal: 'B',
           status: 'Задерживается'
         },
         {
-          time: '14:00',
-          city: 'Вена',
-          number: '1437',
-          terminal: 'B',
-          status: 'Задерживается'
+          time: '15:00',
+          city: 'Москва',
+          number: '1137',
+          terminal: 'C',
+          status: 'Вылетает'
         },
         {
-          time: '14:00',
-          city: 'Вена',
-          number: '1437',
+          time: '16:00',
+          city: 'Берлин',
+          number: '1439',
           terminal: 'B',
+          status: 'Прилетает'
+        },
+        {
+          time: '17:00',
+          city: 'Амстердам',
+          number: '1237',
+          terminal: 'A',
+          status: 'Прилетает'
+        },
+        {
+          time: '18:00',
+          city: 'Пекин',
+          number: '801',
+          terminal: 'A',
           status: 'Задерживается'
         }
-      ]
+      ],
+      filteredFlights: {}
     },
     mutations: {
       set(state, {name, value}) {
@@ -48,6 +63,9 @@ const store = new Vuex.Store({
     getters: {
       getFlights (state) {
         return state.flights
+      },
+      getFilteredFlights (state) {
+        return state.filteredFlights
       }
     }
 })

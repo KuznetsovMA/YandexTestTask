@@ -1,6 +1,6 @@
 <template>
      <table class="timetable">
-            <template v-for="(flight, index) in flights">
+            <template v-for="(flight, index) in filteredFlights">
                 <tr class="timetable__row" :key="index">
                 <td class="timetable__column timetable__time">
                     {{ flight.time }}
@@ -25,8 +25,8 @@
 <script>
 export default {
     computed: {
-        flights() {
-            return this.$store.getters['getFlights']
+        filteredFlights() {
+            return this.$store.getters['getFilteredFlights']
         }
     },
     created() {
@@ -39,6 +39,8 @@ export default {
 @import '../assets/scss/style.scss';
 
 .timetable {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;

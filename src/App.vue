@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  width: 1300px;
+  width: 1280px;
   margin: 20px auto 0 auto;
 
   font-size: 30px;
