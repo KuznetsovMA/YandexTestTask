@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="schedule">
         <filters/>
         <timetable/>
     </section>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+.schedule {
   width: 1280px;
   margin: 20px auto 0 auto;
 

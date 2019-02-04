@@ -1,9 +1,13 @@
 <template>
-    <div class="filters">
-        <input type="text" placeholder="Поиск по номеру рейса">
+    <form 
+    @change="setFilteredFlights"
+    class="filters">
+        <input 
+        v-model="number"
+        type="text" 
+        placeholder="Поиск по номеру рейса">
         <select
         v-model="selected"
-        @change="getFilteredFlights" 
         name="status" 
         id="status">
             <option ref="option" value="Все">Все рейсы</option>
@@ -11,36 +15,27 @@
             <option ref="option" value="Прилетает">Прилетающие рейсы</option>
             <option ref="option" value="Задерживается">Задержанные рейсы</option>
         </select>
-    </div>
+    </form>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      selected: 'Все'
+      selected: 'Все',
+      number: ''
     }
   },
   methods: {
-      getFilteredFlights() {
+      setFilteredFlights() {
         if (this.selected !== 'Все') {
-          const result = this.$store.state.flights.filter((flight) => {
-            return flight.status === this.selected
-          })
-          this.$store.commit('set', {
-            name: 'filteredFlights',
-            value: result
-          })
+        this.$store.dispatch('setFilteredFlights', this.selected)
         } else {
           this.setDefaultFlights()
         }
       },
       setDefaultFlights() {
-        const flights = this.$store.state.flights
-        this.$store.commit('set', {
-          name: 'filteredFlights',
-          value: flights
-        })
+        this.$store.dispatch('setDefaultFlights')
       }
     },
     created() {

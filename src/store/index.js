@@ -42,7 +42,7 @@ const store = new Vuex.Store({
           status: 'Задерживается'
         }
       ],
-      filteredFlights: {}
+      filteredFlights: []
     },
     mutations: {
       set(state, {name, value}) {
@@ -52,12 +52,27 @@ const store = new Vuex.Store({
     actions: {
       getData() {
         return axios.get("https://api.flightstats.com/flex/flightstatus/historical/rest/v3/json/route/status/SVO/HNL/dep/2019/01/1?appId=00b18f10&appKey=+cae0453c3c40ba5a9b8219968ce4bb68&hourOfDay=0&utc=true&numHours=24&maxFlights=10")
-               .then(res => {
-                 console.log(res)
-               })
-               .catch(err => {
-                 console.log(err)
-               })
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      },
+      setFilteredFlights({commit, state}, selected) {
+        const filteredFlights = state.flights.filter((flight) => {
+          return flight.status === selected;
+        })
+        commit('set', {
+          name: 'filteredFlights',
+          value: filteredFlights
+        }) 
+      },
+      setDefaultFlights({commit,state}) {
+        commit('set', {
+          name: 'filteredFlights',
+          value: state.flights
+        })
       }
     },
     getters: {
