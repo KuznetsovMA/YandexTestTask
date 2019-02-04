@@ -1,0 +1,8 @@
+@mixin font($size, $family) {
+    font-size: $size;
+    font-family: $family, Helvetica, sans-serif;
+}
+
+@mixin border($size) {
+    border-bottom: $size solid $yellow;
+}

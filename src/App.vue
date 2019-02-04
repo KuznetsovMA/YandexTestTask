@@ -18,12 +18,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./assets/scss/style.scss";
+
 .schedule {
   width: 1280px;
   margin: 20px auto 0 auto;
 
   font-size: 30px;
-  font-family: "Open Sans", Helvetica, sans-serif;
+
+  @include font(30px, "Open Sans");
 }
 
 </style>

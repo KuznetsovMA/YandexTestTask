@@ -45,12 +45,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/style.scss';
+@import "../assets/scss/style.scss";
 
 .filters {
   width: 100%;
 
-  border-bottom: 2px solid $yellow;
+  @include border(2px);
 }
 
 .filters {
@@ -60,17 +60,16 @@ export default {
     width: 50%;
     padding: 10px 0 10px 0;
 
-    font-size: 21px;
-    font-family: "Open Sans", Helvetica, sans-serif;
-
     border: none;
+
+    @include font(21px, "Open Sans");
 
     &:focus {
       outline: none;
     }
 
     &::placeholder {
-      color: #919191;
+      color: $gray;
     }
   }
 
@@ -79,10 +78,10 @@ export default {
     padding: 10px 0 10px 0;
 
     font-weight: 400;
-    font-size: 21px;
-    font-family: "Open Sans", Helvetica, sans-serif;
 
     border: none;
+
+    @include font(21px, "Open Sans");
 
     &:focus {
       outline: none;

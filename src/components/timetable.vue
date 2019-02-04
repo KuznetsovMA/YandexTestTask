@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/style.scss';
+@import "../assets/scss/style.scss";
 
 .timetable {
   display: flex;
@@ -61,7 +61,7 @@ export default {
   justify-content: space-between;
   padding: 10px 0 10px 0;
 
-  border-bottom: 1px solid $yellow;
+  @include border(1px);
 }
 
 </style>
