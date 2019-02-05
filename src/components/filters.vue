@@ -29,7 +29,7 @@ export default {
   methods: {
       setFilteredFlights() {
         if (this.selected !== 'Все') {
-        this.$store.dispatch('setFilteredFlights', this.number)
+        this.$store.dispatch('setFilteredFlights', this.selected)
         } else {
           this.setDefaultFlights()
         }

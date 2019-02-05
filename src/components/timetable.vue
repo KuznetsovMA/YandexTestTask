@@ -27,7 +27,7 @@ export default {
     computed: {
         filteredFlights() {
             return this.$store.getters['getFilteredFlights']
-        }
+        },
     },
     created() {
         return this.$store.dispatch('getData')

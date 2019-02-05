@@ -59,9 +59,9 @@ const store = new Vuex.Store({
             console.log(err)
           })
       },
-      setFilteredFlights({commit, state}, number) {
+      setFilteredFlights({commit, state}, status) {
         const filteredFlights = state.flights.filter((flight) => {
-          return flight.number.match(number)
+          return flight.status === status
         })
         commit('set', {
           name: 'filteredFlights',
