@@ -40,6 +40,27 @@ const store = new Vuex.Store({
           number: '801',
           terminal: 'A',
           status: 'Задерживается'
+        },
+        {
+          time: '19:00',
+          city: 'Сидней',
+          number: '3209',
+          terminal: 'D',
+          status: 'Задерживается'
+        },
+        {
+          time: '19:00',
+          city: 'Москва',
+          number: '1139',
+          terminal: 'A',
+          status: 'Вылетает'
+        },
+        {
+          time: '20:00',
+          city: 'Москва',
+          number: '1138',
+          terminal: 'A',
+          status: 'Вылетает'
         }
       ],
       filteredFlights: []
