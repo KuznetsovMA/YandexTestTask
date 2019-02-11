@@ -80,18 +80,15 @@ const store = new Vuex.Store({
             console.log(err)
           })
       },
-      setFilteredFlights({commit, state}, number) {
-        // const filteredFlights = state.flights.filter((flight) => {
-        //   return flight.status === status
-        // })
-        // commit('set', {
-        //   name: 'filteredFlights',
-        //   value: filteredFlights
-        // }) 
-
-        const filteredFlights = state.flights.filter((flight) => {
-          return flight.number.startsWith(number)
-        })
+      setFilteredFlights({commit, state}, number, status) {
+        const filter = (flight) => {
+          let isStatusCorrect = true
+          if (status !== 'Все') {
+            isStatusCorrect = flight.number.status === status
+          }
+          return flight.number.startsWith(number) && isStatusCorrect
+        }
+        const filteredFlights = state.flights.filter(filter)
         commit('set', {
           name: 'filteredFlights',
           value: filteredFlights

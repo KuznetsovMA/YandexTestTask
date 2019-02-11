@@ -27,14 +27,16 @@ export default {
   },
   watch: {
     number: function() {
-      if (this.number !== '') {
-        this.$store.dispatch('setFilteredFlights', this.number)
-      } else {
-        this.setDefaultFlights()
-      }
+      this.$store.dispatch('setFilteredFlights', this.number, this.selected)
+    },
+    selected: function() {
+      this.$store.dispatch('setFilteredFlights', this.number, this.selected)
     }
   },
   methods: {
+      setFilteredFlights() {
+        this.$store.dispatch('setFilteredFlights', this.number, this.selected)
+      },
       setDefaultFlights() {
         this.$store.dispatch('setDefaultFlights')
       }
