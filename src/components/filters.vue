@@ -1,8 +1,7 @@
 <template>
     <form 
-    @change="setFilteredFlights"
     class="filters">
-        <input 
+        <input
         v-model="number"
         type="text" 
         placeholder="Поиск по номеру рейса">
@@ -26,14 +25,16 @@ export default {
       number: ''
     }
   },
+  watch: {
+    number: function() {
+      if (this.number !== '') {
+        this.$store.dispatch('setFilteredFlights', this.number)
+      } else {
+        this.setDefaultFlights()
+      }
+    }
+  },
   methods: {
-      setFilteredFlights() {
-        if (this.selected !== 'Все') {
-        this.$store.dispatch('setFilteredFlights', this.selected)
-        } else {
-          this.setDefaultFlights()
-        }
-      },
       setDefaultFlights() {
         this.$store.dispatch('setDefaultFlights')
       }
