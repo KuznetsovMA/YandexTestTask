@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -72,7 +73,7 @@ const store = new Vuex.Store({
     },
     actions: {
       getData() {
-        return axios.get("https://api.flightstats.com/flex/flightstatus/historical/rest/v3/json/route/status/SVO/HNL/dep/2019/01/1?appId=00b18f10&appKey=+cae0453c3c40ba5a9b8219968ce4bb68&hourOfDay=0&utc=true&numHours=24&maxFlights=10")
+        return axios.get("")
           .then(res => {
             console.log(res)
           })
@@ -81,17 +82,12 @@ const store = new Vuex.Store({
           })
       },
       setFilteredFlights({commit, state}, number, status) {
-        const filter = (flight) => {
-          let isStatusCorrect = true
-          if (status !== 'Все') {
-            isStatusCorrect = flight.number.status === status
-          }
-          return flight.number.startsWith(number) && isStatusCorrect
-        }
-        const filteredFlights = state.flights.filter(filter)
+        const result = state.flights.filter((flight) => {
+            return flight.status === status && flight.number.startsWith(number)
+        })
         commit('set', {
           name: 'filteredFlights',
-          value: filteredFlights
+          value: result
         })
       },
       setDefaultFlights({commit,state}) {

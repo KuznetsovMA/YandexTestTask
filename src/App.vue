@@ -10,6 +10,9 @@ import filters from './components/filters'
 import timetable from './components/timetable'
 
 export default {
+    created() {
+        return this.$store.dispatch('getData')
+    },
     components: {
         filters,
         timetable

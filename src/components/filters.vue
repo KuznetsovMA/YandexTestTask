@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      selected: 'Все',
+      selected: 'Вылетает',
       number: ''
     }
   },
@@ -34,17 +34,17 @@ export default {
     }
   },
   methods: {
-      setFilteredFlights() {
-        this.$store.dispatch('setFilteredFlights', this.number, this.selected)
-      },
-      setDefaultFlights() {
-        this.$store.dispatch('setDefaultFlights')
-      }
+    setDefaultFlights() {
+      this.$store.dispatch('setDefaultFlights')
     },
-    created() {
-      this.setDefaultFlights()
+    setFilteredFlights() {
+      this.$store.dispatch('setFilteredFlights')
     }
+  },
+  created() {
+    this.setDefaultFlights()
   }
+}
 </script>
 
 <style lang="scss" scoped>

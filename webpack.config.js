@@ -57,7 +57,7 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.(js|json)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
